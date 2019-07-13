@@ -1,0 +1,16 @@
+<?php
+
+  /**
+   *  Changes default menu in header block
+   */
+
+  function tatsu_install() {
+    $layouts = layout_get_all_configs('layout');
+    foreach ($layouts as $layout_name => $layout) {
+      foreach ($layout['content'] as $block_id => $block) {
+        if ($block['plugin'] === 'system:header') {
+          config_set('layout.layout.' . $layout_name, 'content.' . $block_id . '.data.settings.block_settings.menu', 'main-menu');
+        }
+      }
+    }
+  }
